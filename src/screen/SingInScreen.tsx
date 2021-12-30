@@ -7,7 +7,7 @@ import InputEmailComponnent from "../components/InputEmailComponent";
 import InputPasswordComponnent from "../components/InputPasswordComponnent";
 import TextLinkClickableComponent from "../components/TextLinkClickableComponent";
 import useUser from "../store/user";
-import { initialState } from "../store/user/UserReducer";
+import { userInitialState } from "../store/user/userReducer";
 
 
 

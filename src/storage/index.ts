@@ -5,6 +5,5 @@ export function setToken(key:string, token:string):void{
 
 export const getToken = async (token:string):Promise<string|null> => {
     const _token = await AsyncStorage.getItem(token)
-    console.log('returning token' ,_token)
     return _token
 }

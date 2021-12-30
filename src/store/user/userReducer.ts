@@ -5,7 +5,7 @@ import { Routes } from '../../navigation/Routes'
 import { UserState, Action, ActionTypes } from './types'
 
 
-const initialState: UserState = {
+const userInitialState: UserState = {
     user: {
         id: -1,
         name: "",
@@ -19,7 +19,7 @@ const initialState: UserState = {
     loged: false,
 }
 
-export default function (state: UserState = initialState, action: Action) {
+export default function (state: UserState = userInitialState, action: Action) {
 
     switch (action.type) {
 
@@ -67,4 +67,4 @@ export default function (state: UserState = initialState, action: Action) {
     }
 
 }
-export { initialState }
+export { userInitialState }

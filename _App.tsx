@@ -14,7 +14,7 @@ import NewPostScreen from './src/screen/NewPostScreen';
 import { Button } from 'react-native';
 import LogOutButtonComponent from './src/components/LogOutButtonComponent';
 import { getSession, testWorkingWithLaravel } from './src/api/UserApi';
-import store from './src/store';
+import {store} from './src/store';
 import useUser from './src/store/user';
 
 const Stack = createNativeStackNavigator<RouteStackParamList>()

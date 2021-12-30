@@ -1,9 +1,9 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import useUser from '../store/user'
+import useApplication from '../store/application'
 
 const LoadingScreen: React.FC = () => {
-    const {VerifyIfLogged} = useUser()
+    const {VerifyIfLogged} = useApplication()
     VerifyIfLogged()
     return (
         <View>
