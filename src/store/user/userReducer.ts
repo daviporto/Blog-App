@@ -1,7 +1,3 @@
-import { setJWT } from '../../api/HttpApi'
-import { getSession, logOut, saveSession } from '../../api/UserApi'
-import { goto } from '../../navigation'
-import { Routes } from '../../navigation/Routes'
 import { UserState, Action, ActionTypes } from './types'
 
 

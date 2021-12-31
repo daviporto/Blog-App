@@ -1,14 +1,14 @@
 export enum ActionTypes {
     SET_ERROR = 'SetErrors',
-    SET_LOGGED="setLogged",
-    SAVE_JWT_TOKEN="saveJWTToken",
+    SET_LOGGED = "setLogged",
+    SAVE_JWT_TOKEN = "saveJWTToken",
     FETCH_TOKEN = 'fetchJWTToken',
-    SET_LOADING= 'setLoading',
+    SET_LOADING = 'setLoading',
 }
 
 export type Payload =
-|[]
-|boolean
+    | []
+    | boolean
 
 
 export type Action = {
@@ -17,7 +17,5 @@ export type Action = {
 }
 
 export type ApplicationState = {
-    error: [],
     loading: boolean,
-    JWTToken:string,
 }
