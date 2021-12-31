@@ -1,10 +1,8 @@
-import { useNavigation, CommonActions } from '@react-navigation/core'
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { goto } from '../navigation'
 import { Routes } from '../navigation/Routes'
 import ButtonComponnent from '../components/ButtonComponent'
-import useUser from '../store/user'
 
 const HomeScreen: React.FC = () => {
 

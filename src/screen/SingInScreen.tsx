@@ -7,7 +7,8 @@ import InputEmailComponnent from "../components/InputEmailComponent";
 import InputPasswordComponnent from "../components/InputPasswordComponnent";
 import TextLinkClickableComponent from "../components/TextLinkClickableComponent";
 import useUser from "../store/user";
-import { initialState } from "../store/user/UserReducer";
+import { userInitialState } from "../store/user/userReducer";
+import useApplication from "../store/application";
 
 
 
@@ -45,8 +46,9 @@ function reducer(state: State, action: Action): State {
 
 const SingInScreen: React.FC = () => {
 
-    const [state, dispatch] = useReducer(reducer, initialState)
+    const [state, dispatch] = useReducer(reducer, userInitialState)
     const [error, setError] = useState<[]>([])
+    console.log("app error=", error)
     const userRelated = useUser()
     return (<View>
         {error.length ? (<FlatList

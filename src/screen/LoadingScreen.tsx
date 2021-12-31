@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
+import useApplication from '../store/application'
 import useUser from '../store/user'
 
 const LoadingScreen: React.FC = () => {
