@@ -11,7 +11,6 @@ import { userInitialState } from "../store/user/userReducer";
 
 
 
-
 enum ActionTypes {
     updateEmail,
     updatePassword,
@@ -46,12 +45,12 @@ function reducer(state: State, action: Action): State {
 const SingInScreen: React.FC = () => {
 
     const [state, dispatch] = useReducer(reducer, userInitialState)
-    const [error, setError] = useState<[]>([])
     const userRelated = useUser()
+   
     return (<View>
-        {error.length ? (<FlatList
+        {userRelated.errors.length ? (<FlatList
             keyExtractor={(item) => item}
-            data={error}
+            data={userRelated.errors}
             renderItem={({ item }) => {
                 return <Text style={styles.error}> {item}</Text>
             }}
@@ -73,11 +72,15 @@ const SingInScreen: React.FC = () => {
 
         <ButtonComponnent
             text="Sing In"
-            onPress={() => userRelated.singIn(state.user, (error: []) => setError(error))}
+            onPress={() => userRelated.singIn(state.user)}
         ></ButtonComponnent>
         <TextLinkClickableComponent
+            color="red"
             text="don't have an account yet? Sign up"
-            onPress={() => goto(Routes.SING_UP)}
+            onPress={() => {
+                userRelated.clearError()
+                goto(Routes.SING_UP)
+            }}
         ></TextLinkClickableComponent>
     </View>
     )

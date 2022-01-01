@@ -11,18 +11,24 @@ const userInitialState: UserState = {
         token: ""
     },
     loading: true,
-    error: [],
+    errors: [],
     loged: false,
 }
 
-export const UserReducer =  (state: UserState = userInitialState, action: Action) => {
+export const UserReducer = (state: UserState = userInitialState, action: Action) => {
 
     switch (action.type) {
 
         case ActionTypes.SET_ERRORS:
             return {
                 ...state,
-                error: action.payload,
+                errors: action.payload,
+            }
+
+        case ActionTypes.CLEAR_ERRORS:
+            return {
+                ...state,
+                errors: action.payload,
             }
 
         case ActionTypes.SET_LOGED:

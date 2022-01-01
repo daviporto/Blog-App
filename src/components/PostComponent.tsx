@@ -34,7 +34,7 @@ const PostComponent: React.FC<Props> = ({ post }) => {
                         <Text style={styles.editText}>Edit</Text>
                     </TouchableOpacity>
                 </View>
-                : null
+                : <Text>user_id= {user.id}, postUserId={post.user_id}</Text>
             }
 
 

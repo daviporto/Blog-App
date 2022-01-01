@@ -11,12 +11,10 @@ import { setTopLevelNavigator } from './src/navigation';
 import TimeLineScreen from './src/screen/TimeLineScreen';
 import EditPostScreen from './src/screen/EditPostScreen';
 import NewPostScreen from './src/screen/NewPostScreen';
-import { AppState, Button, View } from 'react-native';
 import LogOutButtonComponent from './src/components/LogOutButtonComponent';
 import { store } from './src/store';
 import LoadingScreen from './src/screen/LoadingScreen';
-import NewPostButtonComponent from './src/components/NewPostButtonComponent';
-
+import Toast from 'react-native-toast-message';
 const Stack = createNativeStackNavigator<RouteStackParamList>()
 
 
@@ -30,7 +28,7 @@ export default class App extends Component {
           // @ts-ignore
           ref={(navigatorRef: NavigationContainerRef<RouteStackParamList>) => setTopLevelNavigator(navigatorRef)}>
           <Stack.Navigator initialRouteName={Routes.LOADING}>
-            <Stack.Screen name={Routes.HOME} component={HomeScreen} />
+            {/* <Stack.Screen name={Routes.HOME} component={HomeScreen} /> */}
             <Stack.Screen name={Routes.SING_UP} component={SingUpScreen} />
             <Stack.Screen name={Routes.LOADING} component={LoadingScreen} />
             <Stack.Screen name={Routes.SING_IN} component={SingInScreen} />
@@ -48,7 +46,9 @@ export default class App extends Component {
             <Stack.Screen name={Routes.NEW_POST} component={NewPostScreen} />
           </Stack.Navigator>
         </NavigationContainer>
+        <Toast />
       </Provider>
+      
     )
   }
 }
