@@ -15,17 +15,22 @@ const PostComponent: React.FC<Props> = ({ post }) => {
     return (
         <View style={styles.container}>
             <View style={styles.postContent}>
-                <Text style={styles.text}>{post.text}</Text>
-                <Text style={styles.footText}>Author: {post.author}  at:27/08/200 2:40</Text>
+                <Text style={styles.text}>{post.content}</Text>
+                <Text style={styles.footText}>by {post.name} at {post.created_at}</Text>
+                {post.edited
+                    ? <Text>Edited</Text>
+                    : null
+                }
             </View>
 
             <View style={styles.edit}>
                 <TouchableOpacity
-                onPress={() => {goto(Routes.EDIT_POST, post)}}
+                    onPress={() => { goto(Routes.EDIT_POST, post) }}
                 >
                     <Text style={styles.editText}>Edit</Text>
                 </TouchableOpacity>
             </View>
+
 
         </View>
 
@@ -40,18 +45,18 @@ const styles = StyleSheet.create({
         height: 200,
     },
 
-    postContent:{
+    postContent: {
         justifyContent: 'space-between',
-        flex:1,
+        flex: 1,
     },
 
-    edit:{
-        backgroundColor:"lightgreen"
+    edit: {
+        backgroundColor: "lightgreen"
     },
 
-    editText:{
-        alignSelf:'center',
-        margin:7
+    editText: {
+        alignSelf: 'center',
+        margin: 7
     },
 
     text: {

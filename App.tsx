@@ -11,10 +11,11 @@ import { setTopLevelNavigator } from './src/navigation';
 import TimeLineScreen from './src/screen/TimeLineScreen';
 import EditPostScreen from './src/screen/EditPostScreen';
 import NewPostScreen from './src/screen/NewPostScreen';
-import { AppState, Button } from 'react-native';
+import { AppState, Button, View } from 'react-native';
 import LogOutButtonComponent from './src/components/LogOutButtonComponent';
 import { store } from './src/store';
 import LoadingScreen from './src/screen/LoadingScreen';
+import NewPostButtonComponent from './src/components/NewPostButtonComponent';
 
 const Stack = createNativeStackNavigator<RouteStackParamList>()
 
@@ -38,8 +39,9 @@ export default class App extends Component {
               component={TimeLineScreen}
               options={{
                 headerRight: () => (
-                  <LogOutButtonComponent></LogOutButtonComponent>
+                    <LogOutButtonComponent></LogOutButtonComponent>
                 ),
+
               }}
             />
             <Stack.Screen name={Routes.EDIT_POST} component={EditPostScreen} />

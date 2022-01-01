@@ -15,7 +15,7 @@ const userInitialState: UserState = {
     loged: false,
 }
 
-export default function (state: UserState = userInitialState, action: Action) {
+export const UserReducer =  (state: UserState = userInitialState, action: Action) => {
 
     switch (action.type) {
 

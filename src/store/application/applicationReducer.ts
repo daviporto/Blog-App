@@ -10,7 +10,8 @@ const applicationInitialState: ApplicationState = {
     loading: true,
 }
 
-export default function (state: ApplicationState = applicationInitialState, action: Action) {
+export const applicationReducer =  (state: ApplicationState = applicationInitialState,
+     action: Action) =>  {
 
     switch (action.type) {
 
