@@ -15,7 +15,7 @@ const TimeLineScreen: React.FC = () => {
     const user = useUser()
     const post = usePost()
 
-    useEffect(() => {post.fetchPosts(user.jwt)}, [])
+    useEffect(() => {post.fetchPosts()}, [])
 
     return (
         <View style={{ flex: 1 }}>
@@ -29,7 +29,7 @@ const TimeLineScreen: React.FC = () => {
                 }}
                 ListFooterComponent={<TextLinkClickableComponent
                     text="older posts"
-                    onPress={() => {post.fetchPosts(user.jwt)}}
+                    onPress={() => {post.fetchPosts()}}
                     color='green'
                 ></TextLinkClickableComponent>}
             >

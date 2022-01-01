@@ -5,7 +5,6 @@ import { Action, ActionTypes } from './types';
 
 
 export const setPosts = (posts:[]): Action => {
-    // console.log("payload= ", posts)
     return {
         type: ActionTypes.SET_POSTS,
         payload: posts

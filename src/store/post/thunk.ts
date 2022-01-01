@@ -9,23 +9,27 @@ import posts from "../../../data";
 
 
 
-export const fetchPosts = (JWTToken: string, page: number): AppThunk => async (dispatch) => {
-    try {
-        const response = await getPostsApi(JWTToken, page)
-        console.log(response.data.data)
-        dispatch(setPosts(response.data.data))
-        dispatch(nextPage())
+export const fetchPosts = (page: number): AppThunk => async (dispatch) => {
+    let token: string | null = await getSession()
+    if (token == null) clearStack(Routes.SING_IN)
+    else {
+        try {
+            const response = await getPostsApi(token, page)
+            console.log(response.data.data)
+            dispatch(setPosts(response.data.data))
+            dispatch(nextPage())
 
-    } catch (e: any) {
-        console.log(e)
-        const errors: any = []
-        if (e.response.status == 500)
-            errors.push("unable to connect with the server please try again later")
+        } catch (e: any) {
+            console.log(e)
+            const errors: any = []
+            if (e.response.status == 500)
+                errors.push("unable to connect with the server please try again later")
 
-        if (e.response.status == 401) errors.push('email or password is incorrect')
+            if (e.response.status == 401) errors.push('email or password is incorrect')
 
-        setErrors(errors)
-        console.log(e.response);
+            setErrors(errors)
+            console.log(e.response);
+        }
     }
 }
 
@@ -34,6 +38,7 @@ export const resetTimeLine = (): AppThunk => async (dispatch) => {
     let token: string | null = await getSession()
     if (token == null) clearStack(Routes.SING_IN)
     else {
+        token = token.replace(/['"]+/g, '')
         try {
             const response = await getPostsApi(token, 1)
             console.log(response.data.data)
@@ -52,7 +57,7 @@ export const resetTimeLine = (): AppThunk => async (dispatch) => {
     }
 }
 
-export const newPost = (JWTToken: string, content: string): AppThunk => async (dispatch) => {
+export const newPost = (content: string): AppThunk => async (dispatch) => {
     let token: string | null = await getSession()
     if (token == null) clearStack(Routes.SING_IN)
     else {
@@ -60,7 +65,7 @@ export const newPost = (JWTToken: string, content: string): AppThunk => async (d
         try {
             const response = await newPostApi(token, content)
             console.log(response)
-             //clearing timeline
+            //clearing timeline
             dispatch(clearPosts())
             dispatch(resetPage())
             clearStack(Routes.TIME_LINE)
@@ -75,7 +80,7 @@ export const newPost = (JWTToken: string, content: string): AppThunk => async (d
 }
 
 
-export const editPost = (id:number, newContent:string):AppThunk => async (dispatch) =>{
+export const editPost = (id: number, newContent: string): AppThunk => async (dispatch) => {
     let token: string | null = await getSession()
     if (token == null) clearStack(Routes.SING_IN)
     else {

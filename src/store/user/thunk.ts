@@ -1,11 +1,11 @@
 import { AppThunk } from "..";
 import { setJWT, withAuthentication } from "../../api/HttpApi";
 import { getSession, Register, SingIn, saveSession, logOut } from "../../api/UserApi";
-import { clearStack, goto } from "../../navigation";
+import { clearStack } from "../../navigation";
 import { Routes } from "../../navigation/Routes";
 import { setToken, setLogged, setLoading, setError, setUser } from "./actions";
 
-export const singUp = (data: User, setError: (e: []) => void): AppThunk => async (dispatch) => {
+export const singUp = (data: User): AppThunk => async (dispatch) => {
     try {
         await Register(data);
         console.log("cadastro concluido com sucesso")
@@ -14,11 +14,12 @@ export const singUp = (data: User, setError: (e: []) => void): AppThunk => async
         const messages: any = []
         const errors = Object.values(e.response.data.errors)
         errors.forEach((value: any) => { messages.push(value[0]) })
-        setError(messages)
+        dispatch(setError(messages))
+
     }
 };
 
-export const singIn = (data: User, setError: (e: []) => void): AppThunk => async (dispatch) => {
+export const singIn = (data: User): AppThunk => async (dispatch) => {
     try {
         const answer = await SingIn(data);
         console.log("answer = ", answer);
@@ -34,16 +35,17 @@ export const singIn = (data: User, setError: (e: []) => void): AppThunk => async
 
         if (e.response.status == 401) errors.push('email or password is incorrect')
 
-        setError(errors)
-        console.log(e.response);
+        dispatch(setError(errors))
+        console.log(errors);
     }
 };
 
 export const singOut = (): AppThunk => async dispatch => {
-    const token = await getSession()
+    let token = await getSession()
     if (token == null) return
+    token = token.replace(/['"]+/g, '')
     logOut(token)
-    clearStack(Routes.HOME)
+    clearStack(Routes.SING_IN)
     dispatch(setLogged(false))
 }
 

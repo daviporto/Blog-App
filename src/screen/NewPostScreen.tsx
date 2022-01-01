@@ -1,15 +1,26 @@
 import React, { useState } from 'react'
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import { goto } from '../navigation'
-import { Routes } from '../navigation/Routes'
 import usePost from '../store/post'
 import useUser from '../store/user'
-
+import Toast from 'react-native-toast-message';
 
 const NewPostScreen: React.FC = () => {
     const { newPost } = usePost()
     const user = useUser()
     const [text, setText] = useState('')
+
+    const validade = ():boolean =>{
+        return  text.length != 0 
+    }
+    const showToast = () => {
+        Toast.show({
+          type: 'error',
+          text1: 'erro',
+          text2: "the post text can't be empty"
+        });
+      }
+  
+
     return (
         <View style={styles.container}>
             <Text style={[styles.addText, { fontSize: 20 }]}>type the new post text</Text>
@@ -21,13 +32,20 @@ const NewPostScreen: React.FC = () => {
                     multiline
                     value={text}
                     onChangeText={(newValue) => setText(newValue)}
+                    autoCapitalize='none'
+                    maxLength={280}
+                    textAlignVertical={'top'}
+                    placeholder="click me to write"
                 ></TextInput>
 
             </View>
 
             <View style={styles.edit}>
                 <TouchableOpacity
-                    onPress={() => newPost(user.jwt, text)}
+                    onPress={() =>{ 
+                        if(validade())newPost(text)
+                        else showToast()
+                    }}
                 >
                     <Text style={styles.addText}>Add</Text>
                 </TouchableOpacity>

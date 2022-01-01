@@ -7,6 +7,13 @@ export const setError = (errors: []): Action => {
     }
 }
 
+export const clearErrors = ():Action =>{
+    return {
+        type:ActionTypes.CLEAR_ERRORS,
+        payload:[]
+    }
+}
+
 export const setLogged = (loged:boolean): Action => {
     return {
         type: ActionTypes.SET_ERRORS,

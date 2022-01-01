@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
 
     },
     Title: {
-        marginTop: 10,
+        marginTop: 12,
         marginLeft: 10
     },
     background: {

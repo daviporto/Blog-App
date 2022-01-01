@@ -31,6 +31,7 @@ type State = {
 
 const initialState: State = {
     user: {
+        id:0,
         name: "",
         email: '',
         phone: "",
@@ -61,18 +62,18 @@ function reducer(state: State = initialState, action: Action): State {
 const SingUpScreen: React.FC = () => {
 
     const [state, dispatch] = useReducer(reducer, initialState)
-    const [error, setError] = useState<[]>([])
     const userRelated = useUser()
+    
     return (
         <View>
-            {error.length ? (<FlatList
+            {userRelated.errors.length ? (<FlatList
                 keyExtractor={(item) => item}
-                data={error}
+                data={userRelated.errors}
                 renderItem={({ item }) => {
                     return <Text style={styles.error}> {item}</Text>
                 }}
             ></FlatList>)
-                :null
+                : null
             }
 
 
@@ -105,10 +106,12 @@ const SingUpScreen: React.FC = () => {
             <ButtonComponnent
                 text="Sing Up"
                 onPress={() => {
-                    userRelated.singUp(state.user, (e:[]) => { setError(e) })
+                    userRelated.clearError()
+                    userRelated.singUp(state.user)
                 }}
             ></ButtonComponnent>
             <TextLinkClickableComponent
+                color="red"
                 text="already have an account? Log in here"
                 onPress={() => goto(Routes.SING_IN)}
             ></TextLinkClickableComponent>
