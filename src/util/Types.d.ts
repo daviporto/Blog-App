@@ -1,9 +1,12 @@
 declare type Post = {
-    author: string,
-    text: string,
-    id: number,
-    createdAt: Date
-    editet: boolean
+    content: string,
+    user_id: number,
+    created_at: string
+    edited: boolean,
+    id:number,
+    updated_at:string,
+    name:string //author
+
 }
 
 declare type User = {
@@ -13,5 +16,13 @@ declare type User = {
     email:string,
     phone:string,
     password:string,
+}
+
+
+declare type Post = {
+    content:string,
+    authorName:string,
+    authorId:number,
+    edited:boolean,
 }
 

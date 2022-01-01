@@ -8,7 +8,6 @@ import InputPasswordComponnent from "../components/InputPasswordComponnent";
 import TextLinkClickableComponent from "../components/TextLinkClickableComponent";
 import useUser from "../store/user";
 import { userInitialState } from "../store/user/userReducer";
-import useApplication from "../store/application";
 
 
 
@@ -48,7 +47,6 @@ const SingInScreen: React.FC = () => {
 
     const [state, dispatch] = useReducer(reducer, userInitialState)
     const [error, setError] = useState<[]>([])
-    console.log("app error=", error)
     const userRelated = useUser()
     return (<View>
         {error.length ? (<FlatList
