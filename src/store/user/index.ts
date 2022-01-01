@@ -8,8 +8,8 @@ import { setLoading, setToken, setLogged, setUser } from "./actions";
 export default function useUser() {
     const dispatch = useDispatch();
     const {
-        user: string,
-        loading: boolean
+        user: User,
+        loading: boolean,
     } = useSelector((state: RootState) => state.user);
 
     return {
@@ -23,7 +23,7 @@ export default function useUser() {
         setLoading: () => dispatch((loading: boolean) => setLoading(loading)),
         setLogged: () => dispatch((loged: boolean) => setLogged(loged)),
         setUser: () => dispatch((user: User) => setUser(user)),
-        jwt: string,
+        user:User,
         loading: boolean
     }
 }
