@@ -16,6 +16,8 @@ const InputPasswordComponnent: React.FC<Props> = ({ onChangeText, value }) => {
                 value={value}
                 style={styles.input}
                 placeholder="123"
+                autoCorrect={false}
+                autoCapitalize='none'
             ></TextInput>
 
         </View>

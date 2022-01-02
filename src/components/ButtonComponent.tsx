@@ -1,36 +1,35 @@
 import React from 'react'
-import { GestureResponderEvent, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
-type Props ={
-    text:string,
+type Props = {
+    text: string,
     onPress: () => void
 }
 
-
-const ButtonComponnent:React.FC<Props> = ({text, onPress}) =>{
-    return(
+const ButtonComponnent: React.FC<Props> = ({ text, onPress }) => {
+    return (
         <View style={styles.button}>
             <TouchableOpacity onPress={onPress}>
-            <Text style={styles.Title}>{text}</Text>
+                <Text style={styles.Title}>{text}</Text>
             </TouchableOpacity>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    Title:{
-        marginVertical:10,
-        marginLeft:10,
-        textAlign:'center',
-        fontSize:30
+    Title: {
+        marginVertical: 10,
+        marginLeft: 10,
+        textAlign: 'center',
+        fontSize: 30
     },
-    button:{
-        backgroundColor:'lightblue',
-        marginHorizontal:20,
-        marginTop:50,
-        width:200,
-        alignSelf:'center',
-        
+    button: {
+        backgroundColor: 'lightblue',
+        marginHorizontal: 20,
+        marginTop: 50,
+        width: 200,
+        alignSelf: 'center',
+
     }
 })
 

@@ -15,6 +15,7 @@ const InputPhoneComponnent: React.FC<Props> = ({ onChangeText, value }) => {
                 value={value}
                 style={styles.input}
                 placeholder="Ex: 31 991976115"
+                keyboardType='numeric'
             ></TextInput>
 
         </View>

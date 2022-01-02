@@ -43,9 +43,9 @@ const EditPostScreen: React.FC = () => {
             <View style={styles.edit}>
                 <TouchableOpacity
                     onPress={() => {
-                        if(validade()) editPost(params.id, text)
+                        if (validade()) editPost(params.id, text)
                         else showToast()
-                       }}
+                    }}
                 >
                     <Text style={styles.addText}>Save</Text>
                 </TouchableOpacity>

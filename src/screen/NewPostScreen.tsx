@@ -9,17 +9,17 @@ const NewPostScreen: React.FC = () => {
     const user = useUser()
     const [text, setText] = useState('')
 
-    const validade = ():boolean =>{
-        return  text.length != 0 
+    const validade = (): boolean => {
+        return text.length != 0
     }
     const showToast = () => {
         Toast.show({
-          type: 'error',
-          text1: 'erro',
-          text2: "the post text can't be empty"
+            type: 'error',
+            text1: 'erro',
+            text2: "the post text can't be empty"
         });
-      }
-  
+    }
+
 
     return (
         <View style={styles.container}>
@@ -42,8 +42,8 @@ const NewPostScreen: React.FC = () => {
 
             <View style={styles.edit}>
                 <TouchableOpacity
-                    onPress={() =>{ 
-                        if(validade())newPost(text)
+                    onPress={() => {
+                        if (validade()) newPost(text)
                         else showToast()
                     }}
                 >

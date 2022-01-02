@@ -1,11 +1,9 @@
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import posts from '../../data'
 import { goto } from '../navigation'
 import { Routes } from '../navigation/Routes'
 import useUser from '../store/user'
-import ButtonComponnent from './ButtonComponent'
-import TextLinkClickableComponent from './TextLinkClickableComponent'
+
 
 type Props = {
     post: Post
@@ -34,10 +32,9 @@ const PostComponent: React.FC<Props> = ({ post }) => {
                         <Text style={styles.editText}>Edit</Text>
                     </TouchableOpacity>
                 </View>
-                : <Text>user_id= {user.id}, postUserId={post.user_id}</Text>
+                // : <Text>user_id= {user.id}, postUserId={post.user_id}</Text>
+                : null
             }
-
-
 
         </View>
 

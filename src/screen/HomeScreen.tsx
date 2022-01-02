@@ -4,6 +4,8 @@ import { goto } from '../navigation'
 import { Routes } from '../navigation/Routes'
 import ButtonComponnent from '../components/ButtonComponent'
 
+//this exists only for debbuging 
+
 const HomeScreen: React.FC = () => {
 
     return (
