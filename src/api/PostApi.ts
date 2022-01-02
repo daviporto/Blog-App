@@ -20,3 +20,8 @@ export const editPostApi = async (JWToken:string, content:string, id:number):Pro
     })
     return response
 }
+
+export const deletePostApi = async (JWToken:string, id:number):Promise<AxiosResponse> =>{
+    const response = await  withAuthentication(JWToken).delete(`/post/${id}`)
+    return response
+}

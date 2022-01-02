@@ -1,9 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "..";
 import { clearPosts, nextPage, resetPage, setPosts } from "./actions";
-import { editPost, fetchPosts, newPost } from "./thunk";
-
-
+import { deletePost, editPost, fetchPosts, newPost } from "./thunk";
 
 export default function usePost() {
     const dispatch = useDispatch();
@@ -13,15 +11,15 @@ export default function usePost() {
     } = useSelector((state: RootState) => state.post);
 
     return {
-        fetchPosts: (JWTToken: string) =>
-            dispatch(fetchPosts(JWTToken, page)),
-        newPost: (JWTToken: string, content:string) => 
-        dispatch(newPost(JWTToken, content)),
+        fetchPosts: () => dispatch(fetchPosts(page)),
+        newPost: (content:string) => 
+        dispatch(newPost(content)),
         setPost: (posts:[]) => dispatch(setPosts(posts)),
         nextPage: () => dispatch(nextPage()),
         resetPage: () => dispatch(resetPage()),
         clearPosts: () => dispatch(clearPosts()),
         editPost: (id:number, newContent:string) => dispatch(editPost(id, newContent)),
+        deletePost: (id:number) => dispatch(deletePost(id)),
         posts,
     }
 }

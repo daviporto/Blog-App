@@ -2,6 +2,7 @@ import React from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { goto } from '../navigation'
 import { Routes } from '../navigation/Routes'
+import usePost from '../store/post'
 import useUser from '../store/user'
 
 
@@ -12,7 +13,7 @@ type Props = {
 
 const PostComponent: React.FC<Props> = ({ post }) => {
     const { user } = useUser()
-    console.log(post.edited)
+    const { deletePost } = usePost()
     return (
         <View style={styles.container}>
             <View style={styles.postContent}>
@@ -25,14 +26,21 @@ const PostComponent: React.FC<Props> = ({ post }) => {
             </View>
 
             {user.id == post.user_id
-                ? <View style={styles.edit}>
+                ? <View style={styles.footButtonsView}>
                     <TouchableOpacity
+                        style={styles.edit}
                         onPress={() => { goto(Routes.EDIT_POST, post) }}
                     >
-                        <Text style={styles.editText}>Edit</Text>
+                        <Text style={styles.footButton}>Edit</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                    style={styles.delete}
+                        onPress={() => { deletePost(post.id)}}
+                    >
+                        <Text style={styles.footButton}>Delete</Text>
                     </TouchableOpacity>
                 </View>
-                // : <Text>user_id= {user.id}, postUserId={post.user_id}</Text>
+                // : <Text>user_id= {user.id}, postUserId={post.user_id}</Text> For Debug
                 : null
             }
 
@@ -55,12 +63,21 @@ const styles = StyleSheet.create({
     },
 
     edit: {
-        backgroundColor: "lightgreen"
+        backgroundColor: "lightgreen",
+        flex:1
     },
 
-    editText: {
+    delete: {
+        backgroundColor: 'red',
+        flex:1,
+    },
+
+    footButton: {
         alignSelf: 'center',
         margin: 7
+    },
+    footButtonsView: {
+        flexDirection: 'row'
     },
 
     text: {

@@ -7,7 +7,6 @@ export default axios.create({
 })
 
 export  const withAuthentication = (token:string):AxiosInstance =>  {
-    console.log(`Bearer ${token}`);
     
     return axios.create({
         baseURL: baseUrl,
