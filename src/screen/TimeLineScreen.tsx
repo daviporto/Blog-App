@@ -19,7 +19,7 @@ const TimeLineScreen: React.FC = () => {
     return (
         <View style={{ flex: 1 }}>
             <FlatList
-                keyExtractor={(results) => results.id}
+                keyExtractor={item => item.id}
                 data={post.posts}
                 renderItem={({ item }) => {
                     return (
