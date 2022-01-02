@@ -1,18 +1,16 @@
 import React from 'react'
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import { AntDesign } from '@expo/vector-icons';
 type Props = {
     text: string,
     onPress: () => void,
-    color:string
+    color: string
 }
 
-
-const TextLinkClickableComponent: React.FC<Props> = ({ text, onPress, color='red'}) => {
+const TextLinkClickableComponent: React.FC<Props> = ({ text, onPress, color = 'red' }) => {
     return (
         <View style={styles.button}>
             <TouchableOpacity onPress={onPress}>
-                <Text style={[styles.Title, {color:color}]}>{text}</Text>
+                <Text style={[styles.Title, { color: color }]}>{text}</Text>
             </TouchableOpacity>
         </View>
     )

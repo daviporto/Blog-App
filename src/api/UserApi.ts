@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
 import { getToken, setToken } from "../storage";
 import HttpApi, { withAuthentication } from "./HttpApi";
 
@@ -19,9 +19,9 @@ export const getSession = async (): Promise<string | null> => {
     return getToken("session");
 };
 
-export const discardSession = ():void =>{
+export const discardSession = (): void => {
     setToken("session", '');
-} 
+}
 
 export const Register = async (user: User): Promise<AxiosResponse> => {
     const response = await HttpApi.post('/register', user)
@@ -29,7 +29,7 @@ export const Register = async (user: User): Promise<AxiosResponse> => {
 }
 
 export const SingInAfterSingUp = async (user: User): Promise<AxiosResponse> => {
-    const response =  await HttpApi.post('/login', user)
+    const response = await HttpApi.post('/login', user)
     return response
 }
 
@@ -42,7 +42,7 @@ export const SingIn = async (user: User): Promise<AxiosResponse> => {
     return response
 }
 
-export const logOut = (token:string) :void =>{
+export const logOut = (token: string): void => {
     discardSession()
     withAuthentication(token).post('/logout', {})
 }

@@ -1,14 +1,28 @@
 {
   "expo": {
-    "name": "blog",
-    "slug": "blog",
+    "name": "Parlador Ideal",
+    "slug": "Parlador",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/androidIcon.png",
     "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "android": {
+        "splash": {
+          "1dpi": "./assets/img/splash-screens/android/drawable-ldpi/splash.png",
+          "mdpi": "./assets/img/splash-screens/android/drawable-mdpi/splash.png",
+          "hdpi": "./assets/img/splash-screens/android/drawable-hdpi/splash.png",
+          "xhdpi": "./assets/img/splash-screens/android/drawable-xhdpi/splash.png",
+          "xxhdpi": "./assets/img/splash-screens/android/drawable-xxhdpi/splash.png",
+          "xxxxhdpi": "./assets/img/splash-screens/android/drawable-xxxhdpi/splash.png",
+          "resizeMode": "cover"
+        }
+      },
+      "ios": {
+        "splash": {
+          "image": "./assets/img/splash-screens/ios/splash.png",
+          "resizeMode": "cover"
+        }
+      }
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -21,9 +35,10 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
+        "foregroundImage": "./assets/androidIcon.png",
+        "backgroundColor": "#add8e6"
+      },
+      "package": "com.davioucaio.Parlador"
     },
     "web": {
       "favicon": "./assets/favicon.png"

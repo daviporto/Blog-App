@@ -15,6 +15,8 @@ const InputNameComponnent: React.FC<Props> = ({ onChangeText, value }) => {
                 value={value}
                 style={styles.input}
                 placeholder="Ex: Claudia"
+                autoCorrect={false}
+                autoCapitalize='none'
             ></TextInput>
 
         </View>

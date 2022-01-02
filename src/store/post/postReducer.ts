@@ -1,7 +1,4 @@
-
-import posts from '../../../data'
 import { Action, ActionTypes, PostState } from './types'
-
 
 const postInitialState: PostState = {
     posts: [],
@@ -34,10 +31,8 @@ export const postReducer = (state = postInitialState, action: Action) => {
         case ActionTypes.CLEAR_POST:
             return {
                 ...state,
-                posts:[]
+                posts: []
             }
-
-
 
         default:
 

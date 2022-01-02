@@ -1,7 +1,6 @@
 import { AntDesign } from '@expo/vector-icons'
 import React, { useEffect } from 'react'
-import { Button, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import ButtonComponnent from '../components/ButtonComponent'
+import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import PostComponent from '../components/PostComponent'
 import TextLinkClickableComponent from '../components/TextLinkClickableComponent'
 import { goto } from '../navigation'
@@ -15,7 +14,7 @@ const TimeLineScreen: React.FC = () => {
     const user = useUser()
     const post = usePost()
 
-    useEffect(() => {post.fetchPosts()}, [])
+    useEffect(() => { post.fetchPosts() }, [])
 
     return (
         <View style={{ flex: 1 }}>
@@ -29,17 +28,17 @@ const TimeLineScreen: React.FC = () => {
                 }}
                 ListFooterComponent={<TextLinkClickableComponent
                     text="older posts"
-                    onPress={() => {post.fetchPosts()}}
+                    onPress={() => { post.fetchPosts() }}
                     color='green'
                 ></TextLinkClickableComponent>}
             >
             </FlatList>
 
-            <TouchableOpacity 
-            style={styles.NewPostButton}
-            onPress={() => goto(Routes.NEW_POST)}
+            <TouchableOpacity
+                style={styles.NewPostButton}
+                onPress={() => goto(Routes.NEW_POST)}
             >
-            <AntDesign name="pluscircleo" size={24} color="black" />
+                <AntDesign name="pluscircleo" size={24} color="black" />
             </TouchableOpacity>
 
         </View>
@@ -48,14 +47,14 @@ const TimeLineScreen: React.FC = () => {
 }
 
 const styles = StyleSheet.create({
-    NewPostButton:{
-        width: 60,  
-        height: 60,   
-        borderRadius: 30,                                            
-        position: 'absolute',                                          
-        bottom: 10,                                                    
-        right: 10, 
-        backgroundColor:"green",
+    NewPostButton: {
+        width: 60,
+        height: 60,
+        borderRadius: 30,
+        position: 'absolute',
+        bottom: 10,
+        right: 10,
+        backgroundColor: "green",
         justifyContent: 'center',
         alignItems: 'center',
 

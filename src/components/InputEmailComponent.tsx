@@ -17,6 +17,8 @@ const InputEmailComponnent: React.FC<Props> = ({ onChangeText, value }) => {
                 value={value}
                 style={styles.input}
                 placeholder="Ex: something@gmail.com"
+                autoCorrect={false}
+                autoCapitalize='none'
             ></TextInput>
         </View>
     )

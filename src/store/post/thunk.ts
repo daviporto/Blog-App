@@ -5,14 +5,14 @@ import { Routes } from "../../navigation/Routes";
 import { clearPosts, nextPage, resetPage, setErrors, setPosts } from "./actions";
 import { newPostApi } from "../../api/PostApi";
 import { getSession } from "../../api/UserApi";
-import posts from "../../../data";
 
 
-
+//try to get posts from the server
 export const fetchPosts = (page: number): AppThunk => async (dispatch) => {
-    let token: string | null = await getSession()
-    if (token == null) clearStack(Routes.SING_IN)
+    let token: string | null = await getSession()//jwtToken
+    if (token == null) clearStack(Routes.SING_IN)//if not logged redirect to login screen 
     else {
+        token = token.replace(/['"]+/g, '')// removing trailing (')
         try {
             const response = await getPostsApi(token, page)
             console.log(response.data.data)
@@ -34,13 +34,12 @@ export const fetchPosts = (page: number): AppThunk => async (dispatch) => {
 }
 
 export const resetTimeLine = (): AppThunk => async (dispatch) => {
-
-    let token: string | null = await getSession()
-    if (token == null) clearStack(Routes.SING_IN)
+    let token: string | null = await getSession()//jwtToken
+    if (token == null) clearStack(Routes.SING_IN)//if not logged redirect to login screen 
     else {
-        token = token.replace(/['"]+/g, '')
+        token = token.replace(/['"]+/g, '')// removing trailing (')
         try {
-            const response = await getPostsApi(token, 1)
+            const response = await getPostsApi(token, 1)//page stands for laravel paginator 
             console.log(response.data.data)
             dispatch(setPosts(response.data.data))
             dispatch(nextPage())
@@ -58,10 +57,10 @@ export const resetTimeLine = (): AppThunk => async (dispatch) => {
 }
 
 export const newPost = (content: string): AppThunk => async (dispatch) => {
-    let token: string | null = await getSession()
-    if (token == null) clearStack(Routes.SING_IN)
+    let token: string | null = await getSession()//jwtToken
+    if (token == null) clearStack(Routes.SING_IN)//if not logged redirect to login screen
     else {
-        token = token.replace(/['"]+/g, '')
+        token = token.replace(/['"]+/g, '')// removing trailing (')
         try {
             const response = await newPostApi(token, content)
             console.log(response)
@@ -81,10 +80,10 @@ export const newPost = (content: string): AppThunk => async (dispatch) => {
 
 
 export const editPost = (id: number, newContent: string): AppThunk => async (dispatch) => {
-    let token: string | null = await getSession()
-    if (token == null) clearStack(Routes.SING_IN)
+    let token: string | null = await getSession()//jwtToken
+    if (token == null) clearStack(Routes.SING_IN)//if not logged redirect to login screen
     else {
-        token = token.replace(/['"]+/g, '')
+        token = token.replace(/['"]+/g, '')// removing trailing (')
         try {
             const response = await editPostApi(token, newContent, id)
             console.log(response)

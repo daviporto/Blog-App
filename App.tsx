@@ -30,14 +30,14 @@ export default class App extends Component {
           <Stack.Navigator initialRouteName={Routes.LOADING}>
             {/* <Stack.Screen name={Routes.HOME} component={HomeScreen} /> */}
             <Stack.Screen name={Routes.SING_UP} component={SingUpScreen} />
-            <Stack.Screen name={Routes.LOADING} component={LoadingScreen} />
+            <Stack.Screen  options={{headerShown: false}} name={Routes.LOADING} component={LoadingScreen} />
             <Stack.Screen name={Routes.SING_IN} component={SingInScreen} />
             <Stack.Screen
               name={Routes.TIME_LINE}
               component={TimeLineScreen}
               options={{
                 headerRight: () => (
-                    <LogOutButtonComponent></LogOutButtonComponent>
+                  <LogOutButtonComponent></LogOutButtonComponent>
                 ),
 
               }}
@@ -48,7 +48,7 @@ export default class App extends Component {
         </NavigationContainer>
         <Toast />
       </Provider>
-      
+
     )
   }
 }

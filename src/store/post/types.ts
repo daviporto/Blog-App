@@ -13,7 +13,7 @@ export enum ActionTypes {
 export type Payload =
     | []
     | boolean
-    |string
+    | string
 
 
 export type Action = {
@@ -22,8 +22,8 @@ export type Action = {
 }
 
 export type PostState = {
-    posts:Post[],
-    errors:[],
-    page:number,
+    posts: Post[],
+    errors: [],
+    page: number,
 
 }

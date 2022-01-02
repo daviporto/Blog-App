@@ -31,7 +31,7 @@ type State = {
 
 const initialState: State = {
     user: {
-        id:0,
+        id: 0,
         name: "",
         email: '',
         phone: "",
@@ -63,7 +63,7 @@ const SingUpScreen: React.FC = () => {
 
     const [state, dispatch] = useReducer(reducer, initialState)
     const userRelated = useUser()
-    
+
     return (
         <View>
             {userRelated.errors.length ? (<FlatList
@@ -75,8 +75,6 @@ const SingUpScreen: React.FC = () => {
             ></FlatList>)
                 : null
             }
-
-
 
             <InputNameComponnent
                 value={state.user.name}

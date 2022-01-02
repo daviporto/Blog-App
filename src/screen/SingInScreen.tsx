@@ -9,8 +9,6 @@ import TextLinkClickableComponent from "../components/TextLinkClickableComponent
 import useUser from "../store/user";
 import { userInitialState } from "../store/user/userReducer";
 
-
-
 enum ActionTypes {
     updateEmail,
     updatePassword,
@@ -28,8 +26,6 @@ type Action = {
 type State = {
     user: User,
 }
-
-
 
 function reducer(state: State, action: Action): State {
     switch (action.type) {
