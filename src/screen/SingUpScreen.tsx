@@ -9,6 +9,7 @@ import InputPasswordComponnent from "../components/InputPasswordComponnent";
 import InputPhoneComponnent from "../components/InputPhoneComponnent";
 import TextLinkClickableComponent from "../components/TextLinkClickableComponent";
 import useUser from "../store/user"
+import ButtonComponent from "../components/ButtonComponent";
 
 
 enum ActionTypes {
@@ -101,16 +102,17 @@ const SingUpScreen: React.FC = () => {
                     dispatch({ type: ActionTypes.updatePassword, payload: newValue })}
             ></InputPasswordComponnent>
 
-            <ButtonComponnent
-                text="Sing Up"
+            <ButtonComponent
+                 loading={userRelated.loading}
+                text="Cadastrar"
                 onPress={() => {
                     userRelated.clearError()
                     userRelated.singUp(state.user)
                 }}
-            ></ButtonComponnent>
+            ></ButtonComponent>
             <TextLinkClickableComponent
                 color="red"
-                text="already have an account? Log in here"
+                text="Já possui uma conta? Faça login aqui "
                 onPress={() => goto(Routes.SING_IN)}
             ></TextLinkClickableComponent>
         </View>

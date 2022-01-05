@@ -1,36 +1,40 @@
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-
+import { Button } from 'react-native-elements'
+import useUser from '../store/user'
 type Props = {
     text: string,
-    onPress: () => void
+    onPress: () => void,
+    backgroundColor:string,
+    loading:boolean
 }
 
-const ButtonComponnent: React.FC<Props> = ({ text, onPress }) => {
+const ButtonComponent: React.FC<Props> = ({ text, onPress, backgroundColor='rgba(111, 202, 186, 1)', loading }) =>{
     return (
-        <View style={styles.button}>
-            <TouchableOpacity onPress={onPress}>
-                <Text style={styles.Title}>{text}</Text>
-            </TouchableOpacity>
+        <View>
+            <Button
+                title={text}
+                loading={loading}
+                loadingProps={{ size: 'small', color: 'white' }}
+                buttonStyle={{
+                    backgroundColor: backgroundColor,
+                    borderRadius: 5,
+                }}
+                titleStyle={{ fontWeight: 'bold', fontSize: 23 }}
+                containerStyle={{
+                    marginHorizontal: 50,
+                    height: 50,
+                    width: 200,
+                    marginVertical: 10,
+                    alignSelf: 'center'
+                }}
+                onPress={() => onPress()} />
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    Title: {
-        marginVertical: 10,
-        marginLeft: 10,
-        textAlign: 'center',
-        fontSize: 30
-    },
-    button: {
-        backgroundColor: 'lightblue',
-        marginHorizontal: 20,
-        marginTop: 50,
-        width: 200,
-        alignSelf: 'center',
 
-    }
 })
 
-export default ButtonComponnent
+export default ButtonComponent

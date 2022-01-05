@@ -7,7 +7,8 @@ export default function usePost() {
     const dispatch = useDispatch();
     const {
         posts,
-        page
+        page,
+        loading
     } = useSelector((state: RootState) => state.post);
 
     return {
@@ -21,5 +22,6 @@ export default function usePost() {
         editPost: (id:number, newContent:string) => dispatch(editPost(id, newContent)),
         deletePost: (id:number) => dispatch(deletePost(id)),
         posts,
+        loading
     }
 }

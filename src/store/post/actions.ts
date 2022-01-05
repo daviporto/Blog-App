@@ -14,6 +14,13 @@ export const setErrors = (errors: []): Action => {
     }
 }
 
+export const setLoading = (loading: boolean): Action => {
+    return {
+        type: ActionTypes.SET_LOADING,
+        payload: loading
+    }
+}
+
 export const nextPage = (): Action => {
     return {
         type: ActionTypes.NEXT_PAGE,
@@ -34,6 +41,29 @@ export const clearPosts = (): Action => {
         payload: ''
     }
 }
+
+export const addBeginning = (post:Post): Action => {
+    return {
+        type: ActionTypes.ADD_BEGINNING,
+        payload: post
+    }
+}
+
+export const overwriteEdited = (post:Post): Action => {
+    return {
+        type: ActionTypes.OVERWRITE_EDITED,
+        payload: post
+    }
+}
+
+export const removeDeleted = (post:Post): Action => {
+    return {
+        type: ActionTypes.REMOVE_DELETED,
+        payload: post
+    }
+}
+
+
 
 
 

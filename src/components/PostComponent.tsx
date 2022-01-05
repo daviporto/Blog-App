@@ -18,7 +18,7 @@ const PostComponent: React.FC<Props> = ({ post }) => {
         <View style={styles.container}>
             <View style={styles.postContent}>
                 <Text style={styles.text}>{post.content}</Text>
-                <Text style={styles.footText}>by {post.name} at {post.created_at}</Text>
+                <Text style={styles.footText}>Autor: {post.name} </Text>
                 {post.edited
                     ? <Text style={styles.footText}>Edited</Text>
                     : null

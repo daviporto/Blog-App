@@ -10,7 +10,7 @@ const userInitialState: UserState = {
         password: "",
         token: ""
     },
-    loading: true,
+    loading: false,
     errors: [],
     loged: false,
 }
@@ -19,16 +19,55 @@ export const UserReducer = (state: UserState = userInitialState, action: Action)
 
     switch (action.type) {
 
-        case ActionTypes.SET_ERRORS:
+        case ActionTypes.SET_EMAIL_ERROR:
             return {
                 ...state,
-                errors: action.payload,
+                errors: {
+                    ...state.errors,
+                    email: action.payload
+                },
             }
 
+        case ActionTypes.SET_NAME_ERROR:
+            return {
+                ...state,
+                errors: {
+                    ...state.errors,
+                    name: action.payload
+                },
+            }
+
+        case ActionTypes.SET_PHONE_ERROR:
+            return {
+                ...state,
+                errors: {
+                    ...state.errors,
+                    phone: action.payload
+                },
+            }
+
+        case ActionTypes.SET_PASSWORD_ERROR:
+            return {
+                ...state,
+                errors: {
+                    ...state.errors,
+                    password: action.payload
+                },
+            }
+
+            case ActionTypes.SET_OTHER_ERRORS:
+                return {
+                    ...state,
+                    errors: {
+                        ...state.errors,
+                        other: action.payload
+                    },
+                }
+    
         case ActionTypes.CLEAR_ERRORS:
             return {
                 ...state,
-                errors: action.payload,
+                errors:[],
             }
 
         case ActionTypes.SET_LOGED:

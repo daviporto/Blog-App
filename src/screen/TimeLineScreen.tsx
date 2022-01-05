@@ -1,6 +1,7 @@
 import { AntDesign } from '@expo/vector-icons'
 import React, { useEffect } from 'react'
 import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { FAB } from 'react-native-elements'
 import PostComponent from '../components/PostComponent'
 import TextLinkClickableComponent from '../components/TextLinkClickableComponent'
 import { goto } from '../navigation'
@@ -8,10 +9,8 @@ import { Routes } from '../navigation/Routes'
 import usePost from '../store/post'
 import useUser from '../store/user'
 
-let page = 1
 
 const TimeLineScreen: React.FC = () => {
-    const user = useUser()
     const post = usePost()
 
     useEffect(() => { post.fetchPosts() }, [])
@@ -26,20 +25,17 @@ const TimeLineScreen: React.FC = () => {
                         <PostComponent post={item}></PostComponent>
                     )
                 }}
-                ListFooterComponent={<TextLinkClickableComponent
-                    text="older posts"
-                    onPress={() => { post.fetchPosts() }}
-                    color='green'
-                ></TextLinkClickableComponent>}
+                onEndReachedThreshold={.9}
+                onEndReached={() => post.fetchPosts()}
             >
             </FlatList>
 
-            <TouchableOpacity
-                style={styles.NewPostButton}
+            <FAB
+                icon={{ name: 'edit', color: 'yellow' }}
+                size="large"
                 onPress={() => goto(Routes.NEW_POST)}
-            >
-                <AntDesign name="pluscircleo" size={24} color="black" />
-            </TouchableOpacity>
+                placement="right"
+            />
 
         </View>
 

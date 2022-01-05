@@ -2,38 +2,18 @@ import { createStore, applyMiddleware, Action, combineReducers } from 'redux'
 import thunk, { ThunkAction, ThunkMiddleware } from 'redux-thunk'
 import { UserState } from './user/types';
 import { ApplicationState } from './application/types';
-import { applicationInitialState, applicationReducer } from './application/applicationReducer';
+import { applicationReducer } from './application/applicationReducer';
 
 import { PostState } from './post/types';
-import { postInitialState, postReducer } from './post/postReducer';
+import { postReducer } from './post/postReducer';
 import { UserReducer } from './user/userReducer';
 
 
-// function user(state: UserState = userInitialState, action: any): UserState {
-//     return state
-// }
-
-// function application(state: ApplicationState = applicationInitialState, action: any): ApplicationState {
-//     return state
-// }
-
-// function post(state: PostState = postInitialState, action: any) {
-//     return state
-// }
-
-// function combined(state = {}, action: any): any {
-//     //if state is undefined, the upper function is going to provide a default value
-//     return {
-//         user: user(state.user, action),
-//         application: application(state.application, action),
-//         post: post(state.post, action)
-//     }
-// }
 
 const reducer = combineReducers({
-    user:UserReducer,
+    user: UserReducer,
     post: postReducer,
-    application:applicationReducer,
+    application: applicationReducer,
 })
 
 export type RootState = {
