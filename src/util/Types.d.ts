@@ -26,3 +26,11 @@ declare type Post = {
     edited:boolean,
 }
 
+declare type UserError = {
+    email:string,
+    passwod:string,
+    phone:string,
+    name:string,
+    other:string
+}
+

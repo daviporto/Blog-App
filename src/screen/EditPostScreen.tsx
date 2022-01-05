@@ -4,12 +4,14 @@ import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-nativ
 import { EditPostParams } from '../navigation/Types'
 import usePost from '../store/post'
 import Toast from 'react-native-toast-message';
+import { Input } from 'react-native-elements'
+import ButtonComponent from '../components/ButtonComponent'
 
 
 const EditPostScreen: React.FC = () => {
     const params = useRoute<EditPostParams>().params;
     const [text, setText] = useState(params.content)
-    const { editPost } = usePost()
+    const { editPost, loading } = usePost()
     const validade = (): boolean => {
         return text.length != 0
     }
@@ -17,38 +19,37 @@ const EditPostScreen: React.FC = () => {
         Toast.show({
             type: 'error',
             text1: 'erro',
-            text2: "the post text can't be empty"
+            text2: "o post não pode ser vazio"
         });
     }
 
     return (
-        <View>
-            <Text style={[styles.addText, { fontSize: 20 }]}>touch the blue area to edit</Text>
-            <View style={{ backgroundColor: 'lightblue' }} >
-
-                <TextInput
+        <View style={styles.container}>
+            <View style={styles.postContent}>
+                <Input
+                    label="toque no post para editalo"
                     style={styles.text}
                     multiline
                     value={text}
-                    numberOfLines={8}
                     autoCapitalize={'none'}
                     textAlignVertical={'top'}
                     maxLength={280}
                     onChangeText={(newValue) => setText(newValue)}
-                ></TextInput>
+                ></Input>
 
 
             </View>
 
-            <View style={styles.edit}>
-                <TouchableOpacity
+            <View >
+
+                <ButtonComponent
+                    loading={loading}
+                    text="salvar"
                     onPress={() => {
-                        if (validade()) editPost(params.id, text)
+                        if (validade()) editPost(params, text)
                         else showToast()
                     }}
-                >
-                    <Text style={styles.addText}>Save</Text>
-                </TouchableOpacity>
+                ></ButtonComponent>
             </View>
         </View>
 
@@ -59,7 +60,7 @@ const styles = StyleSheet.create({
     container: {
         margin: 15,
         flex: 1,
-        backgroundColor: "lightblue",
+        backgroundColor: "white",
     },
 
     postContent: {
@@ -73,22 +74,17 @@ const styles = StyleSheet.create({
 
     addText: {
         alignSelf: 'center',
-        margin: 12,
-
-
+        margin: 12
     },
 
     text: {
         marginHorizontal: 5,
-        height: 200,
-        fontSize: 17,
-
+        flex: 1,
     },
 
     footText: {
         margin: 10,
         fontWeight: 'bold',
-
 
     }
 })

@@ -11,8 +11,8 @@ export function setTopLevelNavigator(
 }
 
 
-
-export function goto(name: string, params: object = {}) {
+//Redireciona para a tora passada como parâmetro 
+export function goto(name: Routes, params: object = {}) {
     navigator.dispatch(
         CommonActions.navigate({
             name: name,
@@ -21,10 +21,18 @@ export function goto(name: string, params: object = {}) {
     );
 }
 
-//clear the navigation stack and redirect to the param route 
-export function clearStack(routeName:Routes) {
+
+//retorna a tela anterior 
+export function back() {
+    navigator.dispatch(
+        CommonActions.goBack()
+    )
+}
+
+//limpa o stack de navegação e redireciona para a rota especificada
+export function clearStack(routeName: Routes) {
     navigator.reset({
         index: 0,
-        routes: [{name: routeName}],
-      });
+        routes: [{ name: routeName }],
+    });
 }

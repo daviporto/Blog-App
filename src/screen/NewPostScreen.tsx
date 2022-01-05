@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import usePost from '../store/post'
-import useUser from '../store/user'
 import Toast from 'react-native-toast-message';
+import { Input } from 'react-native-elements';
+import ButtonComponnent from '../components/ButtonComponent';
 
 const NewPostScreen: React.FC = () => {
-    const { newPost } = usePost()
-    const user = useUser()
+    const { newPost, loading } = usePost()
     const [text, setText] = useState('')
 
     const validade = (): boolean => {
@@ -16,39 +16,36 @@ const NewPostScreen: React.FC = () => {
         Toast.show({
             type: 'error',
             text1: 'erro',
-            text2: "the post text can't be empty"
+            text2: "o post não pode ser vazio"
         });
     }
 
 
     return (
         <View style={styles.container}>
-            <Text style={[styles.addText, { fontSize: 20 }]}>type the new post text</Text>
             <View style={styles.postContent}>
-
-
-                <TextInput
+                <Input
                     style={styles.text}
                     multiline
                     value={text}
                     onChangeText={(newValue) => setText(newValue)}
                     autoCapitalize='none'
                     maxLength={280}
+                    label="Novo post"
                     textAlignVertical={'top'}
-                    placeholder="click me to write"
-                ></TextInput>
-
+                    placeholder="No que está pensando"
+                ></Input>
             </View>
 
-            <View style={styles.edit}>
-                <TouchableOpacity
-                    onPress={() => {
-                        if (validade()) newPost(text)
-                        else showToast()
-                    }}
-                >
-                    <Text style={styles.addText}>Add</Text>
-                </TouchableOpacity>
+            <View>
+                <ButtonComponnent
+                loading={loading}
+                text="adicionar"
+                onPress={() => {
+                    if (validade()) newPost(text)
+                    else showToast()
+                }}
+                ></ButtonComponnent>
             </View>
 
         </View>
@@ -61,7 +58,7 @@ const styles = StyleSheet.create({
     container: {
         margin: 15,
         flex: 1,
-        backgroundColor: "lightblue",
+        backgroundColor: "white",
     },
 
     postContent: {
@@ -80,8 +77,6 @@ const styles = StyleSheet.create({
 
     text: {
         marginHorizontal: 5,
-        height: 200,
-        fontSize: 15,
         flex: 1,
     },
 

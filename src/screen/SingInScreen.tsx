@@ -1,13 +1,14 @@
-import React, { useReducer, useState } from "react";
+import React, { useEffect, useReducer } from "react";
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import { goto } from "../navigation";
 import { Routes } from "../navigation/Routes";
-import ButtonComponnent from "../components/ButtonComponent";
 import InputEmailComponnent from "../components/InputEmailComponent";
 import InputPasswordComponnent from "../components/InputPasswordComponnent";
 import TextLinkClickableComponent from "../components/TextLinkClickableComponent";
 import useUser from "../store/user";
 import { userInitialState } from "../store/user/userReducer";
+import Toast from 'react-native-toast-message';
+import ButtonComponent from "../components/ButtonComponent";
 
 enum ActionTypes {
     updateEmail,
@@ -37,12 +38,25 @@ function reducer(state: State, action: Action): State {
     }
 }
 
+const showToast = (text: string) => {
+    Toast.show({
+        type: 'error',
+        text1: 'erro',
+        text2: text
+    });
+}
+
+
 
 const SingInScreen: React.FC = () => {
 
     const [state, dispatch] = useReducer(reducer, userInitialState)
     const userRelated = useUser()
-   
+    const { errors, loading } = useUser()
+    useEffect(() => {
+        if (errors.other) showToast(errors.other)
+    }, [errors.other])
+
     return (<View>
         {userRelated.errors.length ? (<FlatList
             keyExtractor={(item) => item}
@@ -66,13 +80,14 @@ const SingInScreen: React.FC = () => {
                 dispatch({ type: ActionTypes.updatePassword, payload: newValue })}
         ></InputPasswordComponnent>
 
-        <ButtonComponnent
-            text="Sing In"
+        <ButtonComponent
+        loading={loading}
+            text="Login"
             onPress={() => userRelated.singIn(state.user)}
-        ></ButtonComponnent>
+        ></ButtonComponent>
         <TextLinkClickableComponent
             color="red"
-            text="don't have an account yet? Sign up"
+            text="Não possui uma conta ainda? Faça cadastro aqui"
             onPress={() => {
                 userRelated.clearError()
                 goto(Routes.SING_UP)

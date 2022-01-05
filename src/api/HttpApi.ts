@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from 'axios'
 
-const baseUrl = 'https://1336-2804-2488-308f-b300-9f33-b20c-cfc9-286a.ngrok.io/api'
+const baseUrl = 'https://d50c-2804-2488-308b-9ca0-f68d-23f6-4b94-bd95.ngrok.io/api'
 
 export default axios.create({
     baseURL: baseUrl,

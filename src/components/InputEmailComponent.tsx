@@ -1,47 +1,38 @@
 import React from 'react'
 import { StyleSheet, Text, TextInput, View } from 'react-native'
+import { Input } from 'react-native-elements';
+import useUser from '../store/user';
 
 type Props = {
-    value:string,
-    onChangeText: (newValue:string) => void
+    value: string,
+    onChangeText: (newValue: string) => void
 }
 
 
 const InputEmailComponnent: React.FC<Props> = ({ onChangeText, value }) => {
-
+    const {errors} = useUser()
     return (
-        <View style={styles.background}>
-            <Text style={styles.Title}>Email: </Text>
-            <TextInput
-                onChangeText={(newValue) => onChangeText(newValue)}
-                value={value}
-                style={styles.input}
-                placeholder="Ex: something@gmail.com"
+        <View style={styles.container}>
+            <Input
+                label="Email"
+                placeholder='something@domain.com'
+                leftIcon={{ type: 'MaterialIcons', name: 'email' }}
                 autoCorrect={false}
                 autoCapitalize='none'
-            ></TextInput>
+                onChangeText={(newValue) => onChangeText(newValue)}
+                value={value}
+                errorMessage={errors.email}
+                
+            />
+
+
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    input: {
-        flex: 1,
-        fontSize: 15
-
-    },
-    Title: {
-        marginTop: 12,
-        marginLeft: 10
-    },
-    background: {
-        backgroundColor: '#e0dddd',
-        height: 45,
-        borderRadius: 5,
-        marginHorizontal: 15,
-        marginTop: 15,
-        flexDirection: 'row'
-
+    container: {
+        margin:10
     },
 })
 

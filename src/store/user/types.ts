@@ -1,6 +1,10 @@
 export enum ActionTypes {
     REGISTER = 'register',
-    SET_ERRORS = 'SetErrors',
+    SET_NAME_ERROR = 'SetNameError',
+    SET_PHONE_ERROR = 'SetPhoneError',
+    SET_EMAIL_ERROR = 'SetEmailError',
+    SET_OTHER_ERRORS = 'setOtherErrors',
+    SET_PASSWORD_ERROR = 'SetPasswordError',
     CLEAR_ERRORS = 'clearErrors',
     LOGIN = 'login',
     LOGOUT = 'logout',
@@ -25,7 +29,7 @@ export type Action = {
 
 export type UserState = {
     user: User,
-    errors: any,
+    errors: any|UserError,
     loged: boolean,
     loading: boolean
 }
